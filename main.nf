@@ -110,7 +110,7 @@ Channel
 
 println 'Outside Genome indexing logic'
 
-if (params.genome =~ /hg19|hg38|mm10|rn6|susScr11|dm3/){
+if (params.genome =~ /^(hg19|hg38|mm10|rn6|susScr11|dm3)$/){
     Channel
 	    .fromFilePairs("${genomeAssets}/${params.genome}/*.{0123,amb,ann,bwt.2bit.64,pac,fa}", size: -1)
         .set { bwa_index_ch }
