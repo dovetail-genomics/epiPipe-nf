@@ -128,7 +128,7 @@ if (params.genome =~ /hg19|hg38|mm10|rn6|susScr11|dm3/){
         container 'dovetailg/bwa-mem2'
 
         input:
-        path(ref) from filtCont_idx_ch
+        path(ref) from abcomp_genome_ch
         
         output:
         tuple val(id), path("*") into bwa_index_ch
@@ -140,7 +140,7 @@ if (params.genome =~ /hg19|hg38|mm10|rn6|susScr11|dm3/){
         """
     }
 }
-
+/*
 ////////////////////////////////////////////////////////////////////////////////
 //
 // 2) Pipeline processes
@@ -176,7 +176,7 @@ process bwa_mem2 {
     	    <(cat ${R2}|head -n 400000) \
 	    |samtools view -@ ${task.cpus} -Shb -o ${prefix}.bam - 
         """
-}
+}o
 
 process chr_size1 {
     tag "_${prefix}"
@@ -668,3 +668,4 @@ process ABcomp {
     """
     
 }
+*/
