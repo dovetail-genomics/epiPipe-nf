@@ -121,14 +121,14 @@ if (params.genome =~ /^(hg19|hg38|mm10|rn6|susScr11|dm3)$/){
     Channel
 	    .fromPath(params.genome, checkIfExists: true)
 	    .ifEmpty { exit 1, "Genome not found: ${params.genome}" }
-	    .set { abcomp_genome_ch }
+	    .intro { fasta_index_ch; abcomp_genome_ch }
 
     process  bwa_index {
         label 'major'
         container 'dovetailg/bwa-mem2'
 
         input:
-        path(ref) from abcomp_genome_ch
+        path(ref) from fasta_index_ch
         
         output:
         tuple val(id), path("*") into bwa_index_ch
