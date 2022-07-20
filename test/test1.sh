@@ -1,0 +1,1 @@
+nextflow run main.nf --design ./design.csv --outDir test1 -profile vip
