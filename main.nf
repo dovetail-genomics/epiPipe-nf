@@ -107,9 +107,6 @@ Channel
     .map{it -> tuple(it.id, it.rep, file(it.R1), file(it.R2))}
     .set{ fqs_ch }
 
-
-println 'Outside Genome indexing logic'
-
 if (params.genome =~ /^(hg19|hg38|mm10|rn6|susScr11|dm3)$/){
     Channel
 	    .fromFilePairs("${genomeAssets}/${params.genome}/*.{0123,amb,ann,bwt.2bit.64,pac,fa}", size: -1)
@@ -121,11 +118,8 @@ if (params.genome =~ /^(hg19|hg38|mm10|rn6|susScr11|dm3)$/){
 
 } else {
 
-    println 'Entering Genome indexing logic'
-
     Channel
 	    .fromPath(params.genome, checkIfExists: true)
-        .view()
 	    .ifEmpty { exit 1, "Genome not found: ${params.genome}" }
 	    .set { abcomp_genome_ch }
 
@@ -146,7 +140,7 @@ if (params.genome =~ /^(hg19|hg38|mm10|rn6|susScr11|dm3)$/){
         """
     }
 }
-/*
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 // 2) Pipeline processes
@@ -674,4 +668,3 @@ process ABcomp {
     """
     
 }
-*/
