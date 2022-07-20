@@ -176,7 +176,7 @@ process bwa_mem2 {
     	    <(cat ${R2}|head -n 400000) \
 	    |samtools view -@ ${task.cpus} -Shb -o ${prefix}.bam - 
         """
-}o
+}
 
 process chr_size1 {
     tag "_${prefix}"
