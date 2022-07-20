@@ -120,6 +120,7 @@ if (params.genome =~ /hg19|hg38|mm10|rn6|susScr11|dm3/){
 } else {
     Channel
 	    .fromPath(params.genome, checkIfExists: true)
+        .view()
 	    .ifEmpty { exit 1, "Genome not found: ${params.genome}" }
 	    .set { abcomp_genome_ch }
 
