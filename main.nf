@@ -118,6 +118,9 @@ if (params.genome =~ /hg19|hg38|mm10|rn6|susScr11|dm3/){
 	    .set { abcomp_genome_ch }
 
 } else {
+
+    println 'Entering Genome indexing logic'
+
     Channel
 	    .fromPath(params.genome, checkIfExists: true)
         .view()
