@@ -1,1 +1,7 @@
-nextflow run main.nf --design ./design.csv --outDir test1 -profile vip
+nextflow run dovetail-genomics/epiPipe-nf \
+    --design ./design.csv \
+    --outDir tmp1 \
+    --test \
+    -profile vip \
+    -latest \
+    -r main

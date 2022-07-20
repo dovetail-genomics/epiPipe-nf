@@ -1,21 +1,17 @@
 #!/usr/bin/env nextflow
 
-params.help   = false
+params.help    = false
+params.test    = false
 
-params.design = false
-params.outDir = false
+params.design  = false
+params.outDir  = false
 
-params.genome = 'hg38'
-params.mapQ = 40
+params.genome  = 'hg38'
+params.mapQ    = 40
 
-params.resolutions = false
+params.resolutions   = false
 params.ABresolutions = false
 
-params.chicago = false
-params.hichip = false
-
-params.panel = 'hs_pc_1'
-params.chicagoRes  = "5,10,20"
 
 def helpMessage() {
     log.info"""
@@ -145,8 +141,6 @@ if (params.genome =~ /hg19|hg38|mm10|rn6|susScr11|dm3/){
     }
 }
 
-
-
 ////////////////////////////////////////////////////////////////////////////////
 //
 // 2) Pipeline processes
@@ -166,13 +160,22 @@ process bwa_mem2 {
     
     script:
     prefix = R1.name.toString().replaceFirst('\\..+',"")
-    """
-    bwa-mem2 mem -5SP -t ${task.cpus} \
-    	${index} \
-    	<(cat ${R1}|head -n 400000) \
-    	<(cat ${R2}|head -n 400000) \
-	|samtools view -@ ${task.cpus} -Shb -o ${prefix}.bam - 
-    """
+    if (!params.test)
+        """
+        bwa-mem2 mem -5SP -t ${task.cpus} \
+            ${index} \
+            ${R1} \
+            ${R2} \
+        |samtools view -@ ${task.cpus} -Shb -o ${prefix}.bam - 
+        """
+    else 
+        """
+        bwa-mem2 mem -5SP -t ${task.cpus} \
+    	    ${index} \
+    	    <(cat ${R1}|head -n 400000) \
+    	    <(cat ${R2}|head -n 400000) \
+	    |samtools view -@ ${task.cpus} -Shb -o ${prefix}.bam - 
+        """
 }
 
 process chr_size1 {
