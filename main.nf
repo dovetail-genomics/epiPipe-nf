@@ -121,7 +121,7 @@ if (params.genome =~ /^(hg19|hg38|mm10|rn6|susScr11|dm3)$/){
     Channel
 	    .fromPath(params.genome, checkIfExists: true)
 	    .ifEmpty { exit 1, "Genome not found: ${params.genome}" }
-	    .intro { fasta_index_ch; abcomp_genome_ch }
+	    .into { fasta_index_ch; abcomp_genome_ch }
 
     process  bwa_index {
         label 'major'
