@@ -1,0 +1,4 @@
+id,rep,R1,R2
+GM12878,1,s3://dovetail-public/publicData/fastqs/OmniC_100M_R1.fastq,s3://dovetail-public/publicData/fastqs/OmniC_100M_R2.fastq
+GM12878,2,s3://dovetail-public/publicData/fastqs/MicroC_100M_R1.fastq,s3://dovetail-public/publicData/fastqs/MicroC_100M_R2.fastq
+Arima,1,s3://dovetail-public/publicData/fastqs/arima_100M_R1.fastq,s3://dovetail-public/publicData/fastqs/arima_100M_R2.fastq

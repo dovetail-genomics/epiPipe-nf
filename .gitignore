@@ -1,0 +1,28 @@
+# -*- mode: gitignore; -*-
+# emacs
+*~
+\#*\#
+.\#*
+
+*.log
+
+.nfs*
+
+#  NextFlow
+.nextflow*
+work/
+results/
+.DS_Store
+*.pyc
+
+*.swp*
+
+null*
+null/*
+
+delivery/*
+
+tmp*
+tmp/*
+
+
