@@ -12,7 +12,6 @@ params.mapQ    = 40
 params.resolutions   = false
 params.ABresolutions = false
 
-
 def helpMessage() {
     log.info"""
     Usage:
@@ -107,6 +106,9 @@ Channel
     .splitCsv(header: ['id', 'rep', 'R1', 'R2'], skip: 1)
     .map{it -> tuple(it.id, it.rep, file(it.R1), file(it.R2))}
     .set{ fqs_ch }
+
+
+println 'Outside Genome indexing logic'
 
 if (params.genome =~ /hg19|hg38|mm10|rn6|susScr11|dm3/){
     Channel
