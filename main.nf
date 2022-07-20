@@ -1,4 +1,5 @@
 #!/usr/bin/env nextflow
+nextflow.enable.dsl=1  // Making sure this is interpreted as DSL1
 
 params.help    = false
 params.test    = false
